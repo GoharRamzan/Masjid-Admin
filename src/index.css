@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+
+.bg-greenback {
+  background-color: #016630;
+}
+
+:hover.bg-hover{
+    background-color: #016630;
+}
