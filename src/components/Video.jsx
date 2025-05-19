@@ -25,7 +25,7 @@ const Video = ({ videoUrl }) => {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <button className="bg-red-600 text-white text-2xl px-5 py-3 rounded-full shadow-lg hover:bg-red-700 transition">
+            <button className="bg-red-600 text-white text-2xl px-6 py-2 rounded-xl shadow-lg hover:bg-red-700 transition">
               &#9654;
             </button>
           </div>
