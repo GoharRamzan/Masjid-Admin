@@ -4,6 +4,8 @@ import { FaBars, FaTimes, FaTachometerAlt, FaUsers, FaBed, FaClipboardList, FaUs
 import LogoutButton from './LogoutButton';
 import { IoIosTime } from 'react-icons/io';
 import image from '../assets/logo.png'
+import logo from '../assets/masjid.png'
+
 const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -18,7 +20,7 @@ const Sidebar = () => {
         <>
             {/* Mobile toggle button */}
             <button
-                className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-gray-800 text-white rounded-md"
+                className="lg:hidden fixed top-8 left-4 z-50 p-2 bg-gray-800 text-white rounded-md"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
@@ -28,8 +30,8 @@ const Sidebar = () => {
             <div className={`shadow-2xl top-0 left-0 fixed h-full w-64 bg-[#ffffff] text-[#016630] p-5 z-40 transition-transform duration-300 ease-in-out 
         ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
 
-                <div className="text-2xl font-bold mb-6 flex items-center gap-2">
-                    <FaTachometerAlt /> <span>MyApp</span>
+                <div className="text-2xl font-bold mb-6 flex items-center justify-center">
+                    <span><img src={logo} alt="image is loading......." className='w-36' /></span>
                 </div>
 
                 <nav className="flex flex-col gap-4">
