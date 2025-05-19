@@ -159,7 +159,7 @@ const Dua = () => {
 
           </div>
         </div>
-      </Modal>
+      </Modal> 
       <DuaGet />
     </div>
   );

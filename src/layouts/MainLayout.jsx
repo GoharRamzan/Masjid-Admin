@@ -9,11 +9,11 @@ const MainLayout = () => {
             <div className=' lg:w-64 h-full overflow-hidden ' >
                 <Sidebar />
             </div>
-            <div className="w-[75%] h-full overflow-hidden flex-1 flex flex-col ">
-                <div className='w-full h-[15vh]'>
+            <div className=" w-[75%] h-screen overflow-hidden flex-1 flex flex-col bg-gray-300">
+                <div className='fixed w-full h-[15vh] z-10'>
                 <Navbar />
                 </div>
-                <main className="flex-1 p-6 w-full bg-gray-300 min-h-[85vh] overflow-hidden">
+                <main className="flex mt-30 h-full overflow-y-auto p-6 w-full   overflow-hidden">
                     <Outlet />
                 </main>
             </div>
