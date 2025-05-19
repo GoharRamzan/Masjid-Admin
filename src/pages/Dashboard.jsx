@@ -23,6 +23,9 @@ const Dashboard = () => {
         <Video videoUrl={'tQHAwV9B8hQ'}/>
         <Video videoUrl={'yMg4DXHQooc'}/>
         <Video videoUrl={'c-1VpxPwDcU'}/>
+        <Video videoUrl={'sEqSIDGtZ0E'}/>
+        <Video videoUrl={'ZYaZ6Odbx_Y'}/>
+        <Video videoUrl={'nRuai8aXeHQ'}/>
       </div>
 
     </>
