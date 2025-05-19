@@ -1,17 +1,26 @@
 import React from 'react'
 import CurrentTime from '../components/CurrentTime'
 import Videos from '../components/videos'
+import IslamicDate from '../components/IslamicDate'
 
 const Dashboard = () => {
   return (
     <>
-    <div className='w-full h-full flex justify-end  overflow-y-auto overflow-x-hidden'>
-      <span className='w-1/4 flex  '>
-      <CurrentTime />
-      </span>
-      
-    </div>
-    <Videos/>
+      <div className='w-full  flex justify-end  overflow-y-auto overflow-x-hidden py-4'>
+        <span className='w-4/4 flex  justify-between'>
+          <span className='w-2/4 flex  items-center'><IslamicDate /></span>
+          <span className='w-2/4 flex justify-end items-center'><CurrentTime /></span>
+
+
+        </span>
+
+      </div>
+      <div className='flex flex-wrap justify-around items-center'>
+        <Videos videoUrl={'tQHAwV9B8hQ'} />
+        <Videos videoUrl={'yMg4DXHQooc'} />
+        <Videos videoUrl={'c-1VpxPwDcU'} />
+      </div>
+
     </>
   )
 }

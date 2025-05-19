@@ -12,7 +12,7 @@ const CurrentTime = () => {
         return () => clearInterval(timer);
     }, []);
   return (
-     <div className='border-2 w-full text-white text-center rounded-2xl text-lg xl:text-2xl py-2 bg-greenback'>{currentTime}</div>
+     <div className='border-2 px-7 text-white text-center rounded-2xl text-lg xl:text-2xl py-2 bg-greenback'>{currentTime}</div>
   )
 }
 

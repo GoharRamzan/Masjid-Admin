@@ -13,6 +13,14 @@ const NamazTime = () => {
   const [UID, setUID] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const namazUrduMap = {
+    Fajr: 'فجر',
+    Zuhar: 'ظہر',
+    Asar: 'عصر',
+    Maghrib: 'مغرب',
+    Isha: 'عشاء'
+  };
+
 
   useEffect(() => {
     const storedUID = localStorage.getItem('UID');
@@ -38,7 +46,7 @@ const NamazTime = () => {
       setPrayers(updatedPrayers);
     } else {
       // If namaz doesn't exist, add it
-      setPrayers([...prayers, { name: namazName, urdu_title: urdu ,timing: formattedTime }]);
+      setPrayers([...prayers, { name: namazName, urdu_title: urdu, timing: formattedTime }]);
     }
     // setPrayers([...prayers, { name: namazName, timing: formattedTime }]);
     setNamazName('');
@@ -84,7 +92,11 @@ const NamazTime = () => {
             placeholder="Select Name"
             className="border rounded px-4 py-2"
             value={namazName}
-            onChange={(e) => setNamazName(e.target.value)}
+            onChange={(e) =>{
+               const selectedNamaz = e.target.value;
+              setNamazName(selectedNamaz);
+              setUrdu(namazUrduMap[selectedNamaz] || '');
+            }}
             required
           >
             <option value="">Select Namaz</option>
@@ -97,10 +109,11 @@ const NamazTime = () => {
 
           <input
             type="text"
-            className="border rounded px-4 py-2"
+            className="border rounded px-4 py-2 font-serif text-xl"
             value={urdu}
             onChange={(e) => setUrdu(e.target.value)}
             required
+            readOnly
           />
           <input
             type="time"
@@ -141,31 +154,31 @@ const NamazTime = () => {
                   Delete
                 </button>
               </div>
-              
+
             </div>
           ))}
           <button
-              className='mt-4 bg-[#025a2b] text-white px-6 py-2 rounded-lg cursor-pointer hover:scale-105 transition'
-              onClick={handleSubmitSchedule}
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <div className="flex items-center space-x-2">
-                  <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 000 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z" />
-                  </svg>
-                  <span>Submitting...</span>
-                </div>
-              ) : (
-                'Submit Schedule'
-              )}
-            </button>
+            className='mt-4 bg-[#025a2b] text-white px-6 py-2 rounded-lg cursor-pointer hover:scale-105 transition'
+            onClick={handleSubmitSchedule}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <div className="flex items-center space-x-2">
+                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 000 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z" />
+                </svg>
+                <span>Submitting...</span>
+              </div>
+            ) : (
+              'Submit Schedule'
+            )}
+          </button>
         </div>
 
       </Modal>
 
-      <TimeGet/>
+      <TimeGet />
     </div>
   );
 };
