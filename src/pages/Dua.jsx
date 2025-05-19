@@ -8,6 +8,7 @@ const Dua = () => {
   const [selectedType, setSelectedType] = useState("");
   const [duaContent, setDuaContent] = useState("");
   const [errors, setErrors] = useState({});
+  const [isSaving, setIsSaving] = useState(false);
 
   const handleSaveDua = async () => {
     const newErrors = {};
@@ -27,7 +28,7 @@ const Dua = () => {
       setErrors(newErrors);
       return;
     }
-
+    setIsSaving(true);
     // ✅ API Call
     try {
       const UID = localStorage.getItem('UID'); // Ensure this is stored
@@ -53,6 +54,8 @@ const Dua = () => {
     } catch (error) {
       // alert(error.message); // Or use toast
       toast.error(error.message || "Something went wrong while adding dua.");
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -122,10 +125,38 @@ const Dua = () => {
             </button>
             <button
               onClick={handleSaveDua}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              disabled={isSaving}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
             >
-              Save
+              {isSaving ? (
+                <div className="flex items-center space-x-2">
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 000 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"
+                    />
+                  </svg>
+                  <span>Saving...</span>
+                </div>
+              ) : (
+                'Save'
+              )}
             </button>
+
           </div>
         </div>
       </Modal>
