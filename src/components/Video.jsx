@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Videos = ({videoUrl}) => {
+const Video = ({videoUrl}) => {
   const videoId = videoUrl;
   const youtubeUrl = `https://www.youtube.com/watch?v=${videoId}`;
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
@@ -22,4 +22,4 @@ const Videos = ({videoUrl}) => {
   );
 }
 
-export default Videos
+export default Video

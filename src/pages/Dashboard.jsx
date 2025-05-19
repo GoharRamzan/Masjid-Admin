@@ -1,7 +1,7 @@
 import React from 'react'
 import CurrentTime from '../components/CurrentTime'
-import Videos from '../components/videos'
 import IslamicDate from '../components/IslamicDate'
+import Video from '../components/Video'
 
 const Dashboard = () => {
   return (
@@ -16,9 +16,13 @@ const Dashboard = () => {
 
       </div>
       <div className='flex flex-wrap justify-around items-center'>
-        <Videos videoUrl={'tQHAwV9B8hQ'} />
+        {/* <Videos videoUrl={'tQHAwV9B8hQ'} />
         <Videos videoUrl={'yMg4DXHQooc'} />
-        <Videos videoUrl={'c-1VpxPwDcU'} />
+        <Videos videoUrl={'c-1VpxPwDcU'} /> */}
+
+        <Video videoUrl={'tQHAwV9B8hQ'}/>
+        <Video videoUrl={'yMg4DXHQooc'}/>
+        <Video videoUrl={'c-1VpxPwDcU'}/>
       </div>
 
     </>
