@@ -4,7 +4,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import io from 'socket.io-client';
 import Modal from './Modal.jsx';
 
-const socket = io('http://localhost:5000'); // apna backend URL
+// const socket = io('http://localhost:5000'); // apna backend URL
+const socket = io('https://masjid-screen-phi.vercel.app/'); // apna backend URL
 
 const DuaGet = () => {
     const [duas, setDuas] = useState([]);
@@ -13,6 +14,7 @@ const DuaGet = () => {
     const [isLoading, setIsLoading] = useState({}); // for delete loading state
     const [filter, setFilter] = useState('All'); // 'All', 'Top', 'Bottom'
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedDua, setSelectedDua] = useState(null);
 
     const fetchDuas = async () => {
         try {
@@ -113,13 +115,16 @@ const DuaGet = () => {
                             <p className="text-gray-600 mt-2 font-serif text-2xl">{dua.content}</p>
 
                             <button
-                                onClick={() => setIsModalOpen(true)}
+                                onClick={() => {
+                                    setSelectedDua(dua);
+                                    setIsModalOpen(true);
+                                }}
 
                                 className="mt-4 bottom-0 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition"
                             >
                                 Delete
                             </button>
-
+                            {/* 
                             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
                                 <h1 className='text-2xl text-red-600'>Confirm Delete</h1>
                                 <p className='py-2'>Are you sure you want to delete this data </p>
@@ -166,9 +171,55 @@ const DuaGet = () => {
                                         )}
                                     </button>
                                 </span>
-                            </Modal>
+                            </Modal> */}
                         </div>
                     ))}
+                    <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                        <h1 className='text-2xl text-red-600'>Confirm Delete</h1>
+                        <p className='py-2'>Are you sure you want to delete this data?</p>
+                        <span className='flex space-x-4 justify-end mt-6'>
+                            <button
+                                onClick={() => setIsModalOpen(false)}
+                                className="mt-4 bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded transition"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={() => handleDelete(selectedDua?._id)}
+                                disabled={selectedDua && isLoading[selectedDua._id]}
+                                className="mt-4 bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded transition"
+                            >
+                                {selectedDua && isLoading[selectedDua._id] ? (
+                                    <div className="flex items-center space-x-2">
+                                        <svg
+                                            className="animate-spin h-5 w-5 text-white"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <circle
+                                                className="opacity-25"
+                                                cx="12"
+                                                cy="12"
+                                                r="10"
+                                                stroke="currentColor"
+                                                strokeWidth="4"
+                                            ></circle>
+                                            <path
+                                                className="opacity-75"
+                                                fill="currentColor"
+                                                d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 000 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"
+                                            />
+                                        </svg>
+                                        <span>Deleting...</span>
+                                    </div>
+                                ) : (
+                                    'Delete'
+                                )}
+                            </button>
+                        </span>
+                    </Modal>
+
                 </div>
             )}
         </div>
