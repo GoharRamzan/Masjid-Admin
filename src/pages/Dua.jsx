@@ -20,8 +20,8 @@ const Dua = () => {
 
     if (!duaContent.trim()) {
       newErrors.duaContent = "Dua content is required.";
-    } else if (wordCount > 200) {
-      newErrors.duaContent = "Dua content cannot exceed 200 words.";
+    } else if (wordCount > 50) {
+      newErrors.duaContent = "Dua content cannot exceed 50 words.";
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -98,7 +98,7 @@ const Dua = () => {
               const inputText = e.target.value;
               const wordCount = inputText.trim().split(/\s+/).filter(Boolean).length;
 
-              if (wordCount <= 200) {
+              if (wordCount <= 50) {
                 setDuaContent(inputText);
                 setErrors((prev) => ({ ...prev, duaContent: "" }));
               } else {
@@ -111,7 +111,7 @@ const Dua = () => {
             placeholder="Enter your dua here (Max 200 words)..."
           ></textarea>
           <div className="flex justify-between text-sm text-gray-500 mt-1 mb-2">
-            <span>{duaContent.trim().split(/\s+/).filter(Boolean).length} / 200 words</span>
+            <span>{duaContent.trim().split(/\s+/).filter(Boolean).length} / 50 words</span>
           </div>
           {errors.duaContent && <p className="text-red-500 text-sm">{errors.duaContent}</p>}
 
